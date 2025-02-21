@@ -24,12 +24,10 @@ def get_achievements(username, token):
     """Получает информацию о достижениях пользователя (подписчики, звезды, форки)."""
     headers = {"Authorization": f"token {token}"}
     
-    # Количество подписчиков
     followers_url = f"https://api.github.com/users/{username}"
     response = requests.get(followers_url, headers=headers)
     followers = response.json().get("followers", 0)
 
-    # Количество звезд и форков во всех репозиториях
     repos_url = f"https://api.github.com/users/{username}/repos"
     response = requests.get(repos_url, headers=headers)
     repos = response.json()
